@@ -58,19 +58,24 @@ function Order() {
     setLoading(false);
   }
 
+  function addToCart() {
+    setCart([...cart, { pizza: selectedPizza, size: pizzaSize, price }]);
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  // function addToCartNextJs(formData) {
+  //   "use server";
+  //   sql(`INSERT INTO cart (user_id, pizza_type, size) VALUES ($1, $2)`, [
+  //     formData.pizza_type,
+  //     formData.size,
+  //   ]);
+  // }
+
   return (
     <div className="order-page">
       <div className="order">
         <h2>Create Order</h2>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setCart([
-              ...cart,
-              { pizza: selectedPizza, size: pizzaSize, price },
-            ]);
-          }}
-        >
+        <form action={addToCart}>
           <div>
             <div>
               <label htmlFor="pizza-type">Pizza Type</label>
